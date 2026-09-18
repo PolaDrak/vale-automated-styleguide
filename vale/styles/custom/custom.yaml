@@ -1,0 +1,11 @@
+extends: substitution
+message: Consider using '%s' instead of '%s'
+link: 'www.internal-tools.io'
+level: warning
+ignorecase: false
+action:
+ name: replace
+# swap maps tokens in the form of bad: good
+swap:
+   applications: apps
+   
