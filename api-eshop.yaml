@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: E-shop product API
+  description: A simple API that gets and returns products.
+  version: 1.0.0
+paths:
+  /products:
+    get:
+      summary: Returns all E-shop products.
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "t-shirt"
+    post:
+      summary: Creates a new product.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Mechanical Keyboard"
+                price:
+                  type: number
+                  example: 89.99
+      responses:
+        '201':
+          description: Product created succesfully!
