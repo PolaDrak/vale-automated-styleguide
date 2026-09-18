@@ -1,0 +1,27 @@
+name: Automated Documentation Linting
+
+# Define when the pipeline runs
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  vale-lint:
+    name: Run Vale Style Checks
+    runs-on: ubuntu-latest # Ανοίγει έναν εικονικό υπολογιστή Linux (Ubuntu) στο cloud
+
+    steps:
+      # Βήμα 1: Κατεβάζει τα αρχεία του repo σου στον εικονικό υπολογιστή
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Βήμα 2: Τρέχει το επίσημο εργαλείο του Vale για GitHub Actions
+      - name: Execute Vale Linting
+        uses: errata-ai/vale-action@v2
+        with:
+          files: '.' # Σκανάρει όλο τον φάκελο
+        env:
+          # Δίνει δικαιώματα στο Vale να γράφει τα errors live πάνω στα αρχεία του GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
